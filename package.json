@@ -1,11 +1,11 @@
 {
     "schema": "https://json.schemastore.org/package.json",
-    "name": "template-react-component-library",
-    "description": "template repository for building react component libraries",
+    "name": "@davidjcastner/solver-hashi",
+    "description": "plug in component for solving hashi puzzles",
     "author": "David Castner",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "license": "Unlicense",
-    "repository": "github:davidjcastner/template-react-component-library",
+    "repository": "github:davidjcastner/solver-hashi",
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
     "scripts": {

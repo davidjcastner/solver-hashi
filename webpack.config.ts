@@ -16,7 +16,7 @@ const configuration: Configuration = {
         filename: '[name].js',
         sourceMapFilename: '[name].map.js',
         library: {
-            name: 'LibraryName',
+            name: 'SolverHashi',
             type: 'umd',
         },
         clean: true,
