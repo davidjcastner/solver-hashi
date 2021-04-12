@@ -1,2 +1,2 @@
-export * from './components/Example';
-export * from './utility/foo';
+// components
+export { HashiSolver } from './components/HashiSolver';
