@@ -16,6 +16,7 @@
         "test": "npx jest"
     },
     "dependencies": {
+        "@davidjcastner/ui": "file:../ui",
         "@types/react": "^17.0.3",
         "react": "^17.0.2"
     },

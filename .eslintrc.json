@@ -143,7 +143,7 @@
             }
         ],
         "max-statements": [
-            "error",
+            "off",
             16
         ],
         "multiline-comment-style": "off",
@@ -216,7 +216,7 @@
         "no-loss-of-precision": "off",
         "no-magic-numbers": "off",
         "no-misleading-character-class": "error",
-        "no-mixed-operators": "error",
+        "no-mixed-operators": "off",
         "no-mixed-spaces-and-tabs": "error",
         "no-multi-assign": "error",
         "no-multi-spaces": "error",

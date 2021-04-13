@@ -10,7 +10,7 @@ export const Cell: FunctionComponent<{
     // ensure that a null cell is rendered without error to avoid program
     // crashes between state changes of puzzle size
     const cell = cells.length > cellId ? cells[cellId] : null;
-    return <div>
+    return <div className='hashi-cell'>
         {cellId}
     </div>;
 };

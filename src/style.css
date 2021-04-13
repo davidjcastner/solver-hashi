@@ -1,0 +1,14 @@
+.hashi-solver {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.hashi-board-row {
+    display: flex;
+}
+
+.hashi-cell {
+    width: var(--hashi-cell-width);
+}
