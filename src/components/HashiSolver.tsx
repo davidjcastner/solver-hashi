@@ -1,18 +1,21 @@
-import type { CSSProperties, FunctionComponent } from 'react';
-import type { HashiContext } from '../types/HashiContext';
-import React, { useEffect, useRef, useState } from 'react';
+import type {
+    CSSProperties,
+    FunctionComponent,
+} from 'react';
+import React, {
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { classify } from '@davidjcastner/ui';
 import { Board } from './Board';
 import { Controls } from './Controls';
 import { Setup } from './Setup';
-import { HashiCtxComp, initialHashiContext } from '../context/hashi';
-
-
-/** ensures that the num is between min and max */
-const clamp = (num: number, min: number, max: number): number => {
-    return Math.min(Math.max(num, min), max);
-};
-
+import {
+    HashiContext,
+    useHashiState,
+} from '../context/HashiContext';
+import { clamp } from '../utility/clamp';
 
 /**
  * renders the solver application, the application will take up
@@ -22,10 +25,7 @@ const clamp = (num: number, min: number, max: number): number => {
  * also provides HashiContext to child components
  */
 export const HashiSolver: FunctionComponent = () => {
-    // TODO: switch to useReducer
-    const [state, setState] = useState<HashiContext>(initialHashiContext);
-    const rows = 5;
-    const cols = 5;
+    const { rows, cols } = useHashiState();
 
     // state for ui display of HashiSolver component (not children)
     const [containerStyle, setContainerStyle] = useState<CSSProperties>();
@@ -93,7 +93,7 @@ export const HashiSolver: FunctionComponent = () => {
         window.addEventListener('resize', updateContainerSize);
     }, []);
 
-    return <HashiCtxComp.Provider value={state}>
+    return <HashiContext>
         <div
             className={
                 classify('hashi-solver', {
@@ -104,14 +104,12 @@ export const HashiSolver: FunctionComponent = () => {
             ref={containerRef}
             style={containerStyle}>
             <div className='hashi-panel'>
-                <Board
-                    rows={rows}
-                    cols={cols} />
+                <Board />
                 <Controls />
             </div>
             <div className='hashi-panel'>
                 <Setup />
             </div>
         </div>
-    </HashiCtxComp.Provider>;
+    </HashiContext>;
 };
