@@ -3,12 +3,40 @@
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.hashi-solver.is-horizontal {
+    flex-direction: row;
+}
+
+.hashi-board {
+    margin-inline: auto;
+    padding: calc(var(--hashi-gap-width) + var(--hashi-board-padding));
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+.hashi-board > * + * {
+    margin-top: var(--hashi-gap-width);
 }
 
 .hashi-board-row {
     display: flex;
+    width: fit-content;
+}
+
+.hashi-board-row > * + * {
+    margin-left: var(--hashi-gap-width);
 }
 
 .hashi-cell {
     width: var(--hashi-cell-width);
+    height: var(--hashi-cell-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
 }

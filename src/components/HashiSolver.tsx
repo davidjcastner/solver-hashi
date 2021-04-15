@@ -1,6 +1,7 @@
 import type { CSSProperties, FunctionComponent } from 'react';
 import type { HashiContext } from '../types/HashiContext';
 import React, { useEffect, useRef, useState } from 'react';
+import { classify } from '@davidjcastner/ui';
 import { Board } from './Board';
 import { Controls } from './Controls';
 import { Setup } from './Setup';
@@ -24,7 +25,7 @@ export const HashiSolver: FunctionComponent = () => {
     // TODO: switch to useReducer
     const [state, setState] = useState<HashiContext>(initialHashiContext);
     const rows = 5;
-    const cols = 6;
+    const cols = 5;
 
     // state for ui display of HashiSolver component (not children)
     const [containerStyle, setContainerStyle] = useState<CSSProperties>();
@@ -41,22 +42,20 @@ export const HashiSolver: FunctionComponent = () => {
         // all constants represent px amounts
         const minContainerWidth = 280;
         const minSidePanelWidth = 280;
-        const minCellWidth = 16;
-        const maxCellWidth = 24;
+        const minCellWidth = 32;
+        const maxCellWidth = 48;
         const gapWidth = 1;
+        const boardPadding = 16;
 
         // get calculated container size
         const width = containerRef.current.offsetWidth;
-        const height = containerRef.current.offsetHeight;
-        console.log(width, height);
-        if (width < minContainerWidth) {
-            setIsSmall(true);
-        }
+        // const height = containerRef.current.offsetHeight;
+        setIsSmall(width < minContainerWidth);
 
         // calculate the minimum width needed for all cells
         // then check for expanding
         const minBoardWidth = cols * minCellWidth + (cols + 1) * gapWidth;
-        let boardSpace = width;
+        let boardSpace = width - boardPadding * 2;
 
         // min size for setup panel is 280px
         // so if container width is greater than min board width
@@ -81,30 +80,38 @@ export const HashiSolver: FunctionComponent = () => {
 
         // set state's style string
         setContainerStyle({
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ['--hashi-cell-width' as any]: `${cellWidth}px`,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ['--hashi-gap-width' as any]: `${gapWidth}px`,
-        });
+            '--hashi-cell-width': `${cellWidth}px`,
+            '--hashi-gap-width': `${gapWidth}px`,
+            '--hashi-board-padding': `${boardPadding}px`,
+        } as CSSProperties);
     };
 
     // add listener for recalculating width on window resize
     // and calculate width on initial render with useEffect
-    window.addEventListener('resize', updateContainerSize);
     useEffect(() => {
         updateContainerSize();
-    }, [containerRef]);
+        window.addEventListener('resize', updateContainerSize);
+    }, []);
 
     return <HashiCtxComp.Provider value={state}>
         <div
-            className='hashi-solver'
+            className={
+                classify('hashi-solver', {
+                    'is-horizontal': isHorizontal,
+                    'is-small': isSmall,
+                })
+            }
             ref={containerRef}
             style={containerStyle}>
-            <Board
-                rows={rows}
-                cols={cols} />
-            <Controls />
-            <Setup />
+            <div className='hashi-panel'>
+                <Board
+                    rows={rows}
+                    cols={cols} />
+                <Controls />
+            </div>
+            <div className='hashi-panel'>
+                <Setup />
+            </div>
         </div>
     </HashiCtxComp.Provider>;
 };
