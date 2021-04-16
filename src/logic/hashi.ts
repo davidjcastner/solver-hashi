@@ -172,19 +172,17 @@ const getCell = (hashi: Hashi, row: number, col: number): Cell => {
 };
 
 /** returns information about the cell */
-const getCellInfo = (cell: Cell): CellInfo => {
+export const getCellInfo = (cell: Cell): CellInfo => {
     return CELLS[cell];
 };
 
 /** updates the cell at row, col */
 export const updateCell = (
     hashi: Hashi,
-    row: number,
-    col: number,
+    index: number,
     update: Cell
 ): Hashi => {
     const next = { ...hashi };
-    const index = getIndex(hashi, row, col);
     next.cells = [...next.cells];
     next.cells[index] = update;
     return next;

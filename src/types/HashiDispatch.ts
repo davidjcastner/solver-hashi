@@ -10,6 +10,7 @@ export type HashiDispatch = {
         cols?: number;
         row?: number;
         col?: number;
+        index?: number;
         value?: number;
     };
 };

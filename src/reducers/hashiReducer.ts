@@ -55,11 +55,10 @@ export const hashiReducer = (
             break;
         }
         case Action.SET_CELL: {
-            const row = action.options?.row;
-            const col = action.options?.col;
+            const index = action.options?.index;
             const value = action.options?.value;
-            if (row !== undefined && col !== undefined && value !== undefined) {
-                next.hashi = updateCell(next.hashi, row, col, value);
+            if (index !== undefined && value !== undefined) {
+                next.hashi = updateCell(next.hashi, index, value);
             }
             break;
         }

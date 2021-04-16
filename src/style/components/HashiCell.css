@@ -1,0 +1,78 @@
+.hashi-cell {
+    --hashi-cell-bar-size: 4px;
+    width: var(--hashi-cell-width);
+    height: var(--hashi-cell-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inconsolata', monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+    user-select: none;
+    cursor: pointer;
+    background-color: #bbb;
+}
+
+.hashi-cell-unknown .hashi-cell-value:after { content: '?'; }
+.hashi-cell-node-1 .hashi-cell-value:after { content: '1'; }
+.hashi-cell-node-2 .hashi-cell-value:after { content: '2'; }
+.hashi-cell-node-3 .hashi-cell-value:after { content: '3'; }
+.hashi-cell-node-4 .hashi-cell-value:after { content: '4'; }
+.hashi-cell-node-5 .hashi-cell-value:after { content: '5'; }
+.hashi-cell-node-6 .hashi-cell-value:after { content: '6'; }
+.hashi-cell-node-7 .hashi-cell-value:after { content: '7'; }
+.hashi-cell-node-8 .hashi-cell-value:after { content: '8'; }
+.hashi-cell-horizontal-1 .hashi-cell-value:after { content: '-'; }
+.hashi-cell-horizontal-2 .hashi-cell-value:after { content: '='; }
+.hashi-cell-vertical-1 .hashi-cell-value:after { content: '\''; }
+.hashi-cell-vertical-2 .hashi-cell-value:after { content: '"'; }
+
+.hashi-cell-unknown {
+    background-color: #ddd;
+    color: #999;
+}
+
+.hashi-cell-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--hashi-cell-bar-size);
+}
+
+.hashi-cell-is-node .hashi-cell-container {
+    border-color: black;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: var(--hashi-cell-bar-size);
+}
+
+.hashi-cell-is-edge .hashi-cell-value {
+    display: none;
+}
+
+.hashi-cell-is-horizontal .hashi-cell-container {
+    flex-direction: column;
+}
+
+.hashi-cell-bar {
+    display: none;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.hashi-cell-horizontal-1 .hashi-cell-bar:first-child { display: block; }
+.hashi-cell-horizontal-2 .hashi-cell-bar { display: block; }
+.hashi-cell-vertical-1 .hashi-cell-bar:first-child { display: block; }
+.hashi-cell-vertical-2 .hashi-cell-bar { display: block; }
+
+.hashi-cell-is-vertical .hashi-cell-bar {
+    width: var(--hashi-cell-bar-size);
+}
+
+.hashi-cell-is-horizontal .hashi-cell-bar {
+    height: var(--hashi-cell-bar-size);
+}

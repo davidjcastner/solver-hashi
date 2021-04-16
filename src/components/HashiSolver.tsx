@@ -44,7 +44,7 @@ export const HashiSolver: FunctionComponent = () => {
         const minSidePanelWidth = 280;
         const minCellWidth = 32;
         const maxCellWidth = 48;
-        const gapWidth = 1;
+        const gapWidth = 4;
         const boardPadding = 16;
 
         // get calculated container size
