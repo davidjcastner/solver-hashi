@@ -1,5 +1,6 @@
 import type { HashiDispatch } from '../types/HashiDispatch';
 import type { HashiState } from '../types/HashiState';
+import type { JsonHashi } from '../types/JsonHashi';
 import { HashiAction as Action } from '../enums/HashiAction';
 import { HashiSolverMode as Mode } from '../enums/HashiSolverMode';
 import {
@@ -16,7 +17,6 @@ export const hashiReducer = (
     state: Readonly<HashiState>,
     action: HashiDispatch
 ): HashiState => {
-    console.log(state, action);
     const next = { ...state };
     switch (action.action) {
         case Action.SOLVE: {
@@ -65,7 +65,9 @@ export const hashiReducer = (
         case Action.LOAD_EXAMPLE: {
             const value = action.options?.value;
             if (value !== undefined && value >= 0 && value < examples.length) {
-                next.hashi = hashiFromJson(examples[value]);
+                next.hashi = hashiFromJson(
+                    examples[value] as unknown as JsonHashi
+                );
                 next.solutions = [];
                 next.displayBoard = -1;
             }

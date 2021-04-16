@@ -269,13 +269,30 @@ export const resizeHashi = (
 // io functions for hashi puzzles
 // ----------------------------------------------------------------
 /** exports a hashi to json */
-export const hashiToJson = (hashi: Hashi): JsonHashi => {
-    return {};
+export const hashiToJson = (hashi: Hashi, name?: string): JsonHashi => {
+    const nodes = {} as Record<string, number>;
+    hashi.cells.forEach((cell, index) => {
+        const info = getCellInfo(cell);
+        if (info.isNode) {
+            nodes[index.toString()] = cell;
+        }
+    });
+    return {
+        name: name ?? '',
+        rows: hashi.rows,
+        cols: hashi.cols,
+        nodes,
+    };
 };
 
 /** initializes a hashi from the json */
-export const hashiFromJson = (hashi: JsonHashi): Hashi => {
-    return initialize(1, 1);
+export const hashiFromJson = (jHashi: JsonHashi): Hashi => {
+    const hashi = initialize(jHashi.rows, jHashi.cols);
+    hashi.cells = hashi.cells.map((cell, index) => {
+        const indexStr = index.toString();
+        return indexStr in jHashi.nodes ? jHashi.nodes[indexStr] : cell;
+    });
+    return hashi;
 };
 
 

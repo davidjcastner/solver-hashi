@@ -17,7 +17,7 @@ import { hashiReducer } from '../reducers/hashiReducer';
 // initial state
 const initialState: HashiState = {
     mode: HashiSolverMode.SETUP,
-    hashi: initialize(5, 5),
+    hashi: initialize(7, 7),
     displayBoard: -1,
     solutions: [],
     solveSpeed: 1,
