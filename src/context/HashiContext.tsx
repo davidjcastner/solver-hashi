@@ -10,6 +10,7 @@ import React, {
     useReducer,
 } from 'react';
 import { HashiSolverMode } from '../enums/HashiSolverMode';
+import { initializeBoard } from '../logic/board';
 import { hashiReducer } from '../reducers/hashiReducer';
 
 
@@ -18,26 +19,27 @@ const initialState: HashiState = {
     mode: HashiSolverMode.SETUP,
     rows: 5,
     cols: 5,
+    displayBoard: -1,
+    board: initializeBoard(5, 5),
+    solutions: [],
 };
-
-// helper types for shorthand notation
-type Dispatcher = Dispatch<HashiDispatch>;
-type HashiReducer = Reducer<HashiState, HashiDispatch>;
 
 // state and dispatch contexts
 // two separate contexts for performance (avoids rerendering problems)
 const StateCtx = React.createContext<HashiState>(initialState);
-const DispatchCtx = React.createContext<Dispatcher>(
+const DispatchCtx = React.createContext<Dispatch<HashiDispatch>>(
     (value: HashiDispatch) => {}
 );
 
 // custom hooks for child components
 export const useHashiState = (): HashiState => useContext(StateCtx);
-export const useHashiDispatch = (): Dispatcher => useContext(DispatchCtx);
+export const useHashiDispatch = (): Dispatch<HashiDispatch> => useContext(
+    DispatchCtx
+);
 
 export const HashiContext: FunctionComponent = ({ children }) => {
     // setup reducer and context for children
-    const [state, dispatch] = useReducer<HashiReducer>(
+    const [state, dispatch] = useReducer<Reducer<HashiState, HashiDispatch>>(
         hashiReducer,
         initialState
     );

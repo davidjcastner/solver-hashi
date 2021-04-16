@@ -96,7 +96,11 @@
             "error",
             {
                 "min": 3,
-                "max": 20
+                "max": 20,
+                "exceptions": [
+                    "id",
+                    "up"
+                ]
             }
         ],
         "id-match": "error",
@@ -135,7 +139,10 @@
         ],
         "max-lines": "error",
         "max-nested-callbacks": "error",
-        "max-params": "error",
+        "max-params": [
+            "error",
+            4
+        ],
         "max-statements-per-line": [
             "error",
             {
@@ -241,7 +248,7 @@
         "no-octal-escape": "error",
         "no-octal": "error",
         "no-param-reassign": "error",
-        "no-plusplus": "error",
+        "no-plusplus": "off",
         "no-proto": "error",
         "no-prototype-builtins": "error",
         "no-redeclare": "off",
