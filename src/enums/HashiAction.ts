@@ -12,7 +12,7 @@ export enum HashiAction {
     CLEAR = 'clear',
     SET_SIZE = 'setSize',
     SET_CELL = 'setCell',
-    SET_EXAMPLE = 'setExample',
+    LOAD_EXAMPLE = 'setExample',
 
     // other actions
     CHANGE_SPEED = 'changeSpeed'

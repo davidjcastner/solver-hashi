@@ -1,6 +1,7 @@
 import type { Cell } from '../types/Cell';
 import type { CellInfo } from '../types/CellInfo';
 import type { Hashi } from '../types/Hashi';
+import type { JsonHashi } from '../types/JsonHashi';
 
 
 // ----------------------------------------------------------------
@@ -155,23 +156,23 @@ const CELLS: Record<Cell, CellInfo> = {
 // utility functions for cells
 // ----------------------------------------------------------------
 /** checks if the cells are equal */
-export const areEqual = (cellA: Cell, cellB: Cell): boolean => {
+const areEqual = (cellA: Cell, cellB: Cell): boolean => {
     return cellA === cellB;
 };
 
 /** returns the cell index given a row and col */
-export const getIndex = (hashi: Hashi, row: number, col: number): number => {
+const getIndex = (hashi: Hashi, row: number, col: number): number => {
     return hashi.indexLookup[row][col];
 };
 
 /** returns the cell given a row and col */
-export const getCell = (hashi: Hashi, row: number, col: number): Cell => {
+const getCell = (hashi: Hashi, row: number, col: number): Cell => {
     const index = getIndex(hashi, row, col);
     return hashi.cells[index];
 };
 
 /** returns information about the cell */
-export const getCellInfo = (cell: Cell): CellInfo => {
+const getCellInfo = (cell: Cell): CellInfo => {
     return CELLS[cell];
 };
 
@@ -263,4 +264,28 @@ export const resizeHashi = (
         }
     }
     return next;
+};
+
+
+// ----------------------------------------------------------------
+// io functions for hashi puzzles
+// ----------------------------------------------------------------
+/** exports a hashi to json */
+export const hashiToJson = (hashi: Hashi): JsonHashi => {
+    return {};
+};
+
+/** initializes a hashi from the json */
+export const hashiFromJson = (hashi: JsonHashi): Hashi => {
+    return initialize(1, 1);
+};
+
+
+// ----------------------------------------------------------------
+// solving process
+// ----------------------------------------------------------------
+/** takes one step in solving process */
+export const solveStep = (hashi: Hashi): Hashi => {
+    console.log('solving');
+    return hashi;
 };

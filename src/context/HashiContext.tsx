@@ -10,18 +10,17 @@ import React, {
     useReducer,
 } from 'react';
 import { HashiSolverMode } from '../enums/HashiSolverMode';
-import { initializeBoard } from '../logic/board';
+import { initialize } from '../logic/hashi';
 import { hashiReducer } from '../reducers/hashiReducer';
 
 
 // initial state
 const initialState: HashiState = {
     mode: HashiSolverMode.SETUP,
-    rows: 5,
-    cols: 5,
+    hashi: initialize(5, 5),
     displayBoard: -1,
-    board: initializeBoard(5, 5),
     solutions: [],
+    solveSpeed: 1,
 };
 
 // state and dispatch contexts

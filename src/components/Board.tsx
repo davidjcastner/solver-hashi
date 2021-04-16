@@ -5,7 +5,7 @@ import { useHashiState } from '../context/HashiContext';
 
 /** renders all cells and background for the hashi puzzle */
 export const Board: FunctionComponent = () => {
-    const { rows, cols } = useHashiState();
+    const { rows, cols } = useHashiState().hashi;
     const rowElements = Array.from(Array(rows), (rowVal, rowIdx) => {
         const colElements = Array.from(Array(cols), (colVal, colIdx) => {
             // eslint-disable-next-line no-mixed-operators

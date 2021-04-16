@@ -25,7 +25,7 @@ import { clamp } from '../utility/clamp';
  * also provides HashiContext to child components
  */
 export const HashiSolver: FunctionComponent = () => {
-    const { rows, cols } = useHashiState();
+    const { rows, cols } = useHashiState().hashi;
 
     // state for ui display of HashiSolver component (not children)
     const [containerStyle, setContainerStyle] = useState<CSSProperties>();
